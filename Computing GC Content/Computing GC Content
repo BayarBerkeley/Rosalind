@@ -1,0 +1,50 @@
+file_name = raw_input()
+
+f = open(file_name, 'r')
+
+name = ''
+content = 0.0
+
+
+def count(strand):
+    count = 0
+    size = len(strand)
+    for i in range(size):
+        if strand[i] == 'G' or strand[i]== 'C':
+            count+=1
+    return (count)
+dic = {}
+temp = ''
+for line in f:
+    if line[0] == '>':
+        temp = line[1:]
+        dic[temp] = [0,0]
+        continue
+    if line[0] != '>':
+        con = count(line)
+        dic[temp][0] += con
+        dic[temp][1] += len(line.strip())
+for key in dic:
+    approx = float(dic[key][0])/dic[key][1]*100
+    if approx > content:
+     name = key.strip()
+     content = approx
+ 
+print(name)
+print(content)
+f.close()
+
+def babylonian_sqrt(n, abs_error):
+    """
+    Calculates the square root of a number n using the Babylonian method.
+
+    n: the number to calculate the square root of
+    abs_error: the absolute error that the result must be within
+    """
+    x = n  # initial guess
+    while True:
+        y = 0.5 * (x + n / x)  # calculate the next guess
+        if abs(x - y) < abs_error:  # check if the error is small enough
+            return y
+        x = y  # update the guess for the next iteration
+

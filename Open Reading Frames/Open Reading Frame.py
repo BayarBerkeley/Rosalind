@@ -9,6 +9,7 @@ def single_file(file_name):
     return ''.join(seq)
  
 # "c:/Users/maiba/Desktop/Rosaline/Bioinformatics Stronghold/Open_reading_frame.txt"
+# 'C:/Users/maiba/Desktop/Rosaline/Bioinformatics Stronghold/Open Reading Frame.py'
 
 # return incomplete protein and input could be rna or dna depend on the codons
 def incomp_traslate(mRNA):

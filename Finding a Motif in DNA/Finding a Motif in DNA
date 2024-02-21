@@ -1,0 +1,21 @@
+file_name = raw_input()
+
+f = open(file_name,'r')
+
+list_reads = f.read().split()
+
+DNAstrand = list_reads[0]
+motif = list_reads[1]
+
+list_index = ''
+current_index = 0
+index = 0
+while index >=0:
+    index = DNAstrand.find(motif)
+    if index >= 0:
+        DNAstrand = DNAstrand[index+1:]
+        current_index = current_index + index+1
+        list_index = list_index + str(current_index) + ' '
+        
+print(list_index)
+f.close()

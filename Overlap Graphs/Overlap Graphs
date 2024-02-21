@@ -1,0 +1,32 @@
+file_name = raw_input()
+
+f = open(file_name, 'r')
+
+graph = {}
+seque = []
+ls_name = []
+count = -1
+for line in f:
+    if line[0] == '>':
+        name = line.strip()[1:]
+        ls_name.append(name)
+        seque.append('')
+        count+=1
+    else:
+        seque[count] += line.strip()
+
+for i in range(len(seque)):
+    last3 = seque[i][-3:]
+    graph[ls_name[i]] = []
+    for seq in seque:
+        if seq == seque[i]:
+            continue
+        if last3 == seq[:3]:
+            graph[ls_name[i]].append(ls_name[seque.index(seq)])
+for prt in graph:
+    if graph[prt] == []:
+        continue
+    else:
+        for value in graph[prt]:
+            print(prt + ' ' + value)
+f.close()

@@ -1,0 +1,45 @@
+file_name = raw_input()
+
+f = open(file_name, 'r')
+
+sequences = {}
+name = ''
+for line in f:
+    if line[0] == '>':
+        name = line
+        sequences[name] = ''
+    else:
+        string = line.split()[0]
+        sequences[name] += string
+
+short_seq = ''
+all_seq = sequences.values()
+
+for seq in all_seq:
+    if short_seq == '':
+        short_seq = seq
+    if len(short_seq) > len(seq):
+        short_seq = seq
+
+length = len(short_seq)
+
+for i in range(length): 
+    leng = length - i
+    found = False
+    for j in range(i+1): 
+        look = short_seq[j:j+leng]
+        
+        all_exist = True
+        prt = []
+        for seq in all_seq:
+            prt.append(look not in seq)
+            if look not in seq:
+                all_exist = False
+                break
+        if all_exist:
+            found = True
+            print (look)
+            break
+    if found:
+         break
+f.close()

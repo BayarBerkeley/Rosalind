@@ -1,0 +1,18 @@
+list_strings = raw_input().split()
+
+months = int(list_strings[0])
+age = int(list_strings[1])
+
+    
+def rec_rabbits(mon,adults = 0, kids = 1,old_kids = {}):
+    if str(mon%age) in old_kids:
+        old = old_kids[str(mon%age)]
+    else:
+        old = 0
+    if mon == months:
+        return adults + kids - old
+    old_kids[str(mon%age)] = kids
+    adults = adults - old
+    return (rec_rabbits(mon+1,adults + kids,adults,old_kids))
+print(rec_rabbits(1))
+

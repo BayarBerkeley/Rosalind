@@ -1,0 +1,8 @@
+string = raw_input()
+rev_str = ''.join(reversed(string))
+rev_str = rev_str.lower()
+rev_str = rev_str.replace('a','T')
+rev_str = rev_str.replace('t','A')
+rev_str = rev_str.replace('c','G')
+rev_str = rev_str.replace('g','C')
+print(rev_str)

@@ -1,0 +1,12 @@
+string  = raw_input()
+dic = {'A':0,'C':0,'G':0,'T':0}
+for i in range(len(string)):
+    if string[i] == 'A':
+        dic['A']+=1
+    elif string[i] == 'C':
+        dic['C']+=1
+    elif string[i] == 'G':
+        dic['G']+=1
+    elif string[i] == 'T':
+        dic['T']+=1
+print(str(dic['A']) + ' ' + str(dic['C']) + ' ' + str(dic['G']) + ' ' + str(dic['T']))

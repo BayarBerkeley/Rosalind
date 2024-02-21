@@ -1,0 +1,80 @@
+file_name = raw_input()
+
+f = open(file_name, 'r')
+
+dic = {'A':[],
+       'C':[],
+       'G':[],
+       'T':[]}
+arrow_count = 0
+index = 0
+for line in f:
+    if line[0] == '>':
+        arrow_count +=1
+        index = 0
+        continue
+    if arrow_count == 1:
+        strand_str = line.split()[0]
+        for n in strand_str:
+            if n == 'A':
+                dic['A'].extend([1])
+                dic['C'].extend([0])
+                dic['G'].extend([0])
+                dic['T'].extend([0])
+            elif n == 'C':
+                dic['A'].extend([0])
+                dic['C'].extend([1])
+                dic['G'].extend([0])
+                dic['T'].extend([0])
+            elif n == 'G':
+                dic['A'].extend([0])
+                dic['C'].extend([0])
+                dic['G'].extend([1])
+                dic['T'].extend([0])
+            elif n == 'T':
+                dic['A'].extend([0])
+                dic['C'].extend([0])
+                dic['G'].extend([0])
+                dic['T'].extend([1])
+    if arrow_count > 1:
+       strand_str = line.split()[0]
+       for i in range(len(strand_str)):
+           if strand_str[i] == 'A':
+                dic['A'][index]+=1
+                index+=1
+           elif strand_str[i] == 'C':
+                dic['C'][index]+=1
+                index+=1
+           elif strand_str[i] == 'G':
+                dic['G'][index]+=1
+                index+=1
+           elif strand_str[i] == 'T':
+                dic['T'][index]+=1
+                index+=1
+my_string = ''
+string_A = 'A: '
+string_C = 'C: '
+string_G = 'G: '
+string_T = 'T: '
+
+for i in dic['A']:
+    string_A = string_A + str(i) + ' '
+for i in dic['C']:
+    string_C = string_C + str(i) + ' '
+for i in dic['G']:
+    string_G = string_G + str(i) + ' '
+for i in dic['T']:
+    string_T = string_T + str(i) + ' '
+
+for i in range(len(dic['A'])):
+    my_list = [dic['A'][i],dic['C'][i],dic['G'][i],dic['T'][i]]
+    max_index = my_list.index(max(my_list))
+    my_string = my_string + ['A','C','G','T'][max_index]
+                                    
+string = my_string + '\n' + string_A + '\n' + string_C + '\n' + string_G + '\n' + string_T
+
+print(string)
+
+f.close()
+    
+
